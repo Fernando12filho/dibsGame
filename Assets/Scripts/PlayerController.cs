@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private bool doubleJump;
     public bool isGrounded;
 
-
+    public int playerNum;
 
     private void Awake()
     {
@@ -49,41 +49,81 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
-        Vector2 move = playerControls.Player.Move.ReadValue<Vector2>();
-        Debug.Log(isGrounded);
-
-        if(isGrounded)
+    {
+        if (playerNum == 1)
         {
-            if(playerControls.Player.LowFire.triggered)
+            Vector2 move = playerControls.Player1.Move.ReadValue<Vector2>();
+
+            if (isGrounded)
             {
-                playerRb.AddForce(move * hitStrengthLow,ForceMode2D.Impulse);
+                if (playerControls.Player1.LowFire.triggered)
+                {
+                    playerRb.AddForce(move * hitStrengthLow, ForceMode2D.Impulse);
+                }
+                if (playerControls.Player1.MidFire.triggered)
+                {
+                    playerRb.AddForce(move * hitStrengthMid, ForceMode2D.Impulse);
+                }
+                if (playerControls.Player1.HighFire.triggered)
+                {
+                    playerRb.AddForce(move * hitStrengthHigh, ForceMode2D.Impulse);
+                }
             }
-            if(playerControls.Player.MidFire.triggered)
+            else if (doubleJump)
             {
-                playerRb.AddForce(move * hitStrengthMid,ForceMode2D.Impulse);
-            }
-            if(playerControls.Player.HighFire.triggered)
-            {
-                playerRb.AddForce(move * hitStrengthHigh,ForceMode2D.Impulse);
+                if (playerControls.Player1.LowFire.triggered)
+                {
+                    playerRb.AddForce(move * hitStrengthLow, ForceMode2D.Impulse);
+                    doubleJump = false;
+                }
+                if (playerControls.Player1.MidFire.triggered)
+                {
+                    playerRb.AddForce(move * hitStrengthMid, ForceMode2D.Impulse);
+                    doubleJump = false;
+                }
+                if (playerControls.Player1.HighFire.triggered)
+                {
+                    playerRb.AddForce(move * hitStrengthHigh, ForceMode2D.Impulse);
+                    doubleJump = false;
+                }
             }
         }
-        else if(doubleJump)
+        else if(playerNum == 2)
         {
-            if(playerControls.Player.LowFire.triggered)
+            Vector2 move = playerControls.Player2.Move.ReadValue<Vector2>();
+
+            if (isGrounded)
             {
-                playerRb.AddForce(move * hitStrengthLow,ForceMode2D.Impulse);
-                doubleJump = false;
+                if (playerControls.Player2.LowFire.triggered)
+                {
+                    playerRb.AddForce(move * hitStrengthLow, ForceMode2D.Impulse);
+                }
+                if (playerControls.Player2.MidFire.triggered)
+                {
+                    playerRb.AddForce(move * hitStrengthMid, ForceMode2D.Impulse);
+                }
+                if (playerControls.Player2.HighFire.triggered)
+                {
+                    playerRb.AddForce(move * hitStrengthHigh, ForceMode2D.Impulse);
+                }
             }
-            if(playerControls.Player.MidFire.triggered)
+            else if (doubleJump)
             {
-                playerRb.AddForce(move * hitStrengthMid,ForceMode2D.Impulse);
-                doubleJump = false;
-            }
-            if(playerControls.Player.HighFire.triggered)
-            {
-                playerRb.AddForce(move * hitStrengthHigh,ForceMode2D.Impulse);
-                doubleJump = false;
+                if (playerControls.Player2.LowFire.triggered)
+                {
+                    playerRb.AddForce(move * hitStrengthLow, ForceMode2D.Impulse);
+                    doubleJump = false;
+                }
+                if (playerControls.Player2.MidFire.triggered)
+                {
+                    playerRb.AddForce(move * hitStrengthMid, ForceMode2D.Impulse);
+                    doubleJump = false;
+                }
+                if (playerControls.Player2.HighFire.triggered)
+                {
+                    playerRb.AddForce(move * hitStrengthHigh, ForceMode2D.Impulse);
+                    doubleJump = false;
+                }
             }
         }
     }

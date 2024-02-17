@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         });
         oneP.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene("Feature Testing Scene");
+            SceneManager.LoadScene("One Player Level");
         });
         twoP.onClick.AddListener(() =>
         {

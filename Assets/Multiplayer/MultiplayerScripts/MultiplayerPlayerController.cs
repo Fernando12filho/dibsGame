@@ -5,8 +5,9 @@ using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
+using Unity.Netcode;
 
-public class MultiplayerPlayerController : MonoBehaviour
+public class MultiplayerPlayerController : NetworkBehaviour
 {
     private InputSystemEditable playerControls;
 
@@ -50,11 +51,13 @@ public class MultiplayerPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner) return;
+
         if (playerNum == 1)
         {
             Vector2 move = playerControls.Player1.Move.ReadValue<Vector2>();
 
-            if (isGrounded)
+            if (this.isGrounded)
             {
                 if (playerControls.Player1.LowFire.triggered)
                 {
@@ -69,7 +72,7 @@ public class MultiplayerPlayerController : MonoBehaviour
                     playerRb.AddForce(move * hitStrengthHigh, ForceMode2D.Impulse);
                 }
             }
-            else if (doubleJump)
+            else if (this.doubleJump)
             {
                 if (playerControls.Player1.LowFire.triggered)
                 {
@@ -92,7 +95,7 @@ public class MultiplayerPlayerController : MonoBehaviour
         {
             Vector2 move = playerControls.Player2.Move.ReadValue<Vector2>();
 
-            if (isGrounded)
+            if (this.isGrounded)
             {
                 if (playerControls.Player2.LowFire.triggered)
                 {
@@ -107,7 +110,7 @@ public class MultiplayerPlayerController : MonoBehaviour
                     playerRb.AddForce(move * hitStrengthHigh, ForceMode2D.Impulse);
                 }
             }
-            else if (doubleJump)
+            else if (this.doubleJump)
             {
                 if (playerControls.Player2.LowFire.triggered)
                 {
@@ -132,14 +135,22 @@ public class MultiplayerPlayerController : MonoBehaviour
     {
         if (col.CompareTag("Ground"))
         {
-            isGrounded = true;
-            doubleJump = true;
+            this.isGrounded = true;
+            this.doubleJump = true;
         }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        isGrounded = false;
+        this.isGrounded = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag=="Player")
+        {
+            Physics2D.IgnoreCollision(playerCollider, collision.collider);
+        }
     }
 
 }

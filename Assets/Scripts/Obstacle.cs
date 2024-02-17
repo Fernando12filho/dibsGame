@@ -2,27 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class Obstacle : MonoBehaviour
 {
 
-    //instantiate different obstacles objects, Slime and Spikes to start
-    public GameObject slime;
-    public GameObject spikes;
-
     Vector3 hitPosition;
     public float speed = 10.0f;
-
     private bool isStuck = false;
+    private InputSystemEditable playerControl;
 
+    private void Awake()
+    {
+        playerControl = new InputSystemEditable();
+    }
 
+    private void OnEnable()
+    {
+        playerControl.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControl.Disable();
+    }
     // Update is called once per frame
     void Update()
     {
         if (isStuck)
         {
             gameObject.transform.position = hitPosition;
-            if (Input.GetKeyDown(KeyCode.Space))
+            //lock rotation
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+            if (playerControl.Player1.LowFire.triggered || playerControl.Player1.MidFire.triggered ||  playerControl.Player1.HighFire.triggered)
             {
                 Debug.Log("Player is now free to move");
                 isStuck = false;
@@ -50,7 +63,6 @@ public class Obstacle : MonoBehaviour
             //player freezes for 2 seconds when colliding with slime and cant move 
             hitPosition = gameObject.transform.position;
             isStuck = true;
-
         }
     }
 

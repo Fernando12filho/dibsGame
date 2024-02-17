@@ -21,22 +21,22 @@ public class Tile : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("PlayerDropper1"))
             highlight1.SetActive(true);
-        if (collision.gameObject.CompareTag("PlayerDropper2"))
+        else if (collision.gameObject.CompareTag("PlayerDropper2"))
             highlight2.SetActive(true);
-        if (collision.gameObject.CompareTag("PlayerDropper3"))
+        else if (collision.gameObject.CompareTag("PlayerDropper3"))
             highlight3.SetActive(true);
-        if (collision.gameObject.CompareTag("PlayerDropper4"))
+        else if (collision.gameObject.CompareTag("PlayerDropper4"))
             highlight4.SetActive(true);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerDropper1"))
             highlight1.SetActive(false);
-        if (collision.gameObject.CompareTag("PlayerDropper2"))
+        else if (collision.gameObject.CompareTag("PlayerDropper2"))
             highlight2.SetActive(false);
-        if (collision.gameObject.CompareTag("PlayerDropper3"))
+        else if (collision.gameObject.CompareTag("PlayerDropper3"))
             highlight3.SetActive(false);
-        if (collision.gameObject.CompareTag("PlayerDropper4"))
+        else if (collision.gameObject.CompareTag("PlayerDropper4"))
             highlight4.SetActive(false);
     }
 }

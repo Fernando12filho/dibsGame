@@ -71,6 +71,15 @@ public partial class @InputSystemEditable: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""31bf7c6c-cf8a-4441-9046-9aac41572b7a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -324,6 +333,17 @@ public partial class @InputSystemEditable: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""High Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc94c0a7-26b2-480f-b128-df72b57fb08f"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Quit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1178,6 +1198,7 @@ public partial class @InputSystemEditable: IInputActionCollection2, IDisposable
         m_Player1_LowFire = m_Player1.FindAction("Low Fire", throwIfNotFound: true);
         m_Player1_MidFire = m_Player1.FindAction("Mid Fire", throwIfNotFound: true);
         m_Player1_HighFire = m_Player1.FindAction("High Fire", throwIfNotFound: true);
+        m_Player1_Quit = m_Player1.FindAction("Quit", throwIfNotFound: true);
         // Player2
         m_Player2 = asset.FindActionMap("Player2", throwIfNotFound: true);
         m_Player2_Move = m_Player2.FindAction("Move", throwIfNotFound: true);
@@ -1263,6 +1284,7 @@ public partial class @InputSystemEditable: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player1_LowFire;
     private readonly InputAction m_Player1_MidFire;
     private readonly InputAction m_Player1_HighFire;
+    private readonly InputAction m_Player1_Quit;
     public struct Player1Actions
     {
         private @InputSystemEditable m_Wrapper;
@@ -1272,6 +1294,7 @@ public partial class @InputSystemEditable: IInputActionCollection2, IDisposable
         public InputAction @LowFire => m_Wrapper.m_Player1_LowFire;
         public InputAction @MidFire => m_Wrapper.m_Player1_MidFire;
         public InputAction @HighFire => m_Wrapper.m_Player1_HighFire;
+        public InputAction @Quit => m_Wrapper.m_Player1_Quit;
         public InputActionMap Get() { return m_Wrapper.m_Player1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1296,6 +1319,9 @@ public partial class @InputSystemEditable: IInputActionCollection2, IDisposable
             @HighFire.started += instance.OnHighFire;
             @HighFire.performed += instance.OnHighFire;
             @HighFire.canceled += instance.OnHighFire;
+            @Quit.started += instance.OnQuit;
+            @Quit.performed += instance.OnQuit;
+            @Quit.canceled += instance.OnQuit;
         }
 
         private void UnregisterCallbacks(IPlayer1Actions instance)
@@ -1315,6 +1341,9 @@ public partial class @InputSystemEditable: IInputActionCollection2, IDisposable
             @HighFire.started -= instance.OnHighFire;
             @HighFire.performed -= instance.OnHighFire;
             @HighFire.canceled -= instance.OnHighFire;
+            @Quit.started -= instance.OnQuit;
+            @Quit.performed -= instance.OnQuit;
+            @Quit.canceled -= instance.OnQuit;
         }
 
         public void RemoveCallbacks(IPlayer1Actions instance)
@@ -1580,6 +1609,7 @@ public partial class @InputSystemEditable: IInputActionCollection2, IDisposable
         void OnLowFire(InputAction.CallbackContext context);
         void OnMidFire(InputAction.CallbackContext context);
         void OnHighFire(InputAction.CallbackContext context);
+        void OnQuit(InputAction.CallbackContext context);
     }
     public interface IPlayer2Actions
     {

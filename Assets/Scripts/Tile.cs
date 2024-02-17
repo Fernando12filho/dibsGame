@@ -11,4 +11,6 @@ public class Tile : MonoBehaviour
     {
         toRender.color = isOffset ? offsetColor : baseColor;
     }
+
+    
 }

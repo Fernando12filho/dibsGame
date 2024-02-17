@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8588372040525313617}
   - component: {fileID: 8472075327685121534}
   - component: {fileID: 5656041009573216260}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tile Prefab test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,6 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb8737e2e693e945b5a5c9c6221dc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseColor: {r: 0.5943396, g: 0.1541919, b: 0.1541919, a: 1}
-  offsetColor: {r: 0.3773585, g: 0.1975792, b: 0.1975792, a: 1}
+  baseColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 0.39215687}
+  offsetColor: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 0.39215687}
   toRender: {fileID: 8472075327685121534}

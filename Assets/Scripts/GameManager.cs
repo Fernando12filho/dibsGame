@@ -34,8 +34,9 @@ public class GameManager : MonoBehaviour
 
         play.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene("Player Count");
-            
+            oneP.gameObject.SetActive(true); twoP.gameObject.SetActive(true); threeP.gameObject.SetActive(true); fourP.gameObject.SetActive(true);
+            play.gameObject.SetActive(false); quit.gameObject.SetActive(false);
+
         });
         quit.onClick.AddListener(() =>
         {
@@ -59,9 +60,9 @@ public class GameManager : MonoBehaviour
         });
     }
 
-    private void Update()
+    void Update()
     {
-        if (playerControls.Player1.Quit.triggered)
+        if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
         {
             Application.Quit();
         }

@@ -921,11 +921,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 74c95614-91b2-49a9-a232-3d6c8bdb4914
+  cloudProjectId: afe72196-e009-45d9-a3df-f0a186568fc2
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: My project (1)
-  organizationId: fgmelofilho
+  projectName: Arcade Game Jam Project Local
+  organizationId: epikmysterydude
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

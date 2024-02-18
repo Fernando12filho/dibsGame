@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public CircleCollider2D playerCollider;
     public CircleCollider2D groundCollider;
 
-    private bool doubleJump;
+    [SerializeField] private bool doubleJump;
     public bool isGrounded;
 
     public int playerNum;
@@ -153,8 +153,15 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = false;
     }
-    
-    
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Wind"))
+        {
+            doubleJump = true;
+        }
+    }
+
 
 }
 

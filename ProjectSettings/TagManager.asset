@@ -13,6 +13,9 @@ TagManager:
   - PlayerDropper3
   - PlayerDropper4
   - Fan
+  - Player1
+  - Player2
+  - Wind
   layers:
   - Default
   - TransparentFX

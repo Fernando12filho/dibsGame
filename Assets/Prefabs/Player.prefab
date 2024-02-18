@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5538887796678709186}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,8 +167,11 @@ MonoBehaviour:
   hitStrengthMid: 15
   hitStrengthHigh: 20
   playerRb: {fileID: 4678735857555287160}
+  playerDropper: {fileID: 0}
+  gameManager: {fileID: 0}
   playerCollider: {fileID: 2217415670745321785}
   groundCollider: {fileID: 6304346738980410704}
+  doubleJump: 0
   isGrounded: 0
   playerNum: 1
 --- !u!114 &5538887796678709186

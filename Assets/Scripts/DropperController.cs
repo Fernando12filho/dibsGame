@@ -12,11 +12,12 @@ public class DropperController : MonoBehaviour
 
     private void Awake()
     {
-        transform.position = new Vector2(1, 1);
-        randSelect = Random.Range(0, 7);
+        transform.position = new Vector2(0, 0);
+        randSelect = Random.Range(0, 6);
         selectedObject = playerObstacles[randSelect];
         gameObject.GetComponent<SpriteRenderer>().sprite = selectedObject.GetComponent<SpriteRenderer>().sprite;
     }
+
 
     private void Update()
     {

@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
 
     public bool isDropping = true;
 
+    public int playerScore1 = 0;
+    public int playerScore2 = 0;
+
     private InputSystemEditable playerControls;
 
     public static GameManager Instance;
@@ -142,4 +145,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("One Player Level");
     }
 
+    public IEnumerator Goal()
+    {
+
+        yield return new WaitForSeconds(3);
+        levelWon = true;
+
+    }
 }

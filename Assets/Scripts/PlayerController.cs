@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameManager.isDropping)
+        //if (!gameManager.isDropping)
         {
             if (playerNum == 1)
             {
@@ -134,15 +134,15 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        else if (gameManager.isDropping)
-        {
-            playerDropper.SetActive(true);
-        }
+        //else if (gameManager.isDropping)
+       // { 
+       //     playerDropper.SetActive(true);
+        //}
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.CompareTag("Ground"))
+        if(col.CompareTag("Ground") || col.CompareTag("Trampoline")  || col.CompareTag("Slime"))
         {
             isGrounded = true;
             doubleJump = true;

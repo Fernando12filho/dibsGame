@@ -13,11 +13,13 @@ public class DropperController : MonoBehaviour
     private void Awake()
     {
         transform.position = new Vector2(0, 0);
-        randSelect = Random.Range(0, 6);
-        selectedObject = playerObstacles[randSelect];
-        gameObject.GetComponent<SpriteRenderer>().sprite = selectedObject.GetComponent<SpriteRenderer>().sprite;
+        selectNewObject();
     }
 
+    private void OnEnable()
+    {
+        selectNewObject();
+    }
 
     private void Update()
     {
@@ -60,5 +62,12 @@ public class DropperController : MonoBehaviour
                     transform.position += new Vector3(0, -7 * Time.deltaTime, 0);
                 }
         }
+    }
+
+    public void selectNewObject()
+    {
+        randSelect = Random.Range(0, 6);
+        selectedObject = playerObstacles[randSelect];
+        gameObject.GetComponent<SpriteRenderer>().sprite = selectedObject.GetComponent<SpriteRenderer>().sprite;
     }
 }   

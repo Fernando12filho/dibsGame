@@ -36,11 +36,16 @@ public class Obstacle : MonoBehaviour
             gameObject.transform.position = hitPosition;
             //lock rotation
             gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-            if (playerControl.Player1.LowFire.triggered || playerControl.Player1.MidFire.triggered ||  playerControl.Player1.HighFire.triggered)
+            if (gameObject.CompareTag("Player1"))
             {
-                isStuck = false;
+                if (playerControl.Player1.LowFire.triggered || playerControl.Player1.MidFire.triggered || playerControl.Player1.HighFire.triggered)
+                    isStuck = false;
             }
-
+            else if(gameObject.CompareTag("Player2"))
+            {
+                if (playerControl.Player2.LowFire.triggered || playerControl.Player2.MidFire.triggered || playerControl.Player2.HighFire.triggered)
+                    isStuck = false;
+            }
         }
     }
 

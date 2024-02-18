@@ -1711,7 +1711,8 @@ MonoBehaviour:
   fourP: {fileID: 1271433394}
   player1Build: 1
   player2Build: 1
-  isDropping: 0
+  levelWon: 0
+  isDropping: 1
 --- !u!4 &1777037809
 Transform:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public bool player1Build = true;
     public bool player2Build = true;
+    public bool levelWon = false;
 
     public bool isDropping = true;
 
@@ -115,7 +116,7 @@ public class GameManager : MonoBehaviour
                 player.gameObject.SetActive(true);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (levelWon)
             {
                 DropperController[] builders = FindObjectsByType<DropperController>(FindObjectsInactive.Include, FindObjectsSortMode.None);
                 foreach (var builder in builders) 
@@ -128,15 +129,16 @@ public class GameManager : MonoBehaviour
                     tile.gameObject.SetActive(true);
                 }
                 isDropping = true;
+                levelWon = false;
             }
         }
     }
 
     IEnumerator TutorialTimer()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene("Tutorial 2");
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene("One Player Level");
     }
 

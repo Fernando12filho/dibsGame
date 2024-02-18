@@ -44,7 +44,7 @@ public class Tile : MonoBehaviour
             {
                 Instantiate(dropperController1.GetComponent<DropperController>().selectedObject, new Vector3(tilePos1.x,tilePos1.y), Quaternion.identity);
                 isOccupied = true;
-                gameObject.SetActive(false);
+                Destroy(gameObject);
 
                 GameManager.gameManager.player1Build = false;
 
@@ -56,7 +56,7 @@ public class Tile : MonoBehaviour
             {
                 Instantiate(dropperController2.GetComponent<DropperController>().selectedObject, new Vector3(tilePos2.x, tilePos2.y), Quaternion.identity);
                 isOccupied = true;
-                gameObject.SetActive(false);
+                Destroy(gameObject);
 
                 GameManager.gameManager.player2Build = false;
             }

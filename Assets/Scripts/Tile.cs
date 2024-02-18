@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -12,22 +13,29 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject highlight2;
     [SerializeField] private GameObject highlight3;
     [SerializeField] private GameObject highlight4;
-    public Vector2 tilePos1 = new Vector2();
-    public Vector2 tilePos2 = new Vector2();
-    public Vector2 tilePos3 = new Vector2();
-    public Vector2 tilePos4 = new Vector2();
+    public Vector2 tilePos1;
+    public Vector2 tilePos2;
+    public Vector2 tilePos3;
+    public Vector2 tilePos4;
+    [SerializeField] private bool isOccupied = false;
+
 
     public void Init(bool isOffset)
     {
         toRender.color = isOffset ? offsetColor : baseColor;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerDropper1"))
         {
             highlight1.SetActive(true);
-            tilePos1 = collision.transform.position;
+            tilePos1 = new Vector2(this.transform.position.x, this.transform.position.y);
+            
+                Debug.Log(gameObject.name);
+
         }
         else if (collision.gameObject.CompareTag("PlayerDropper2"))
         {

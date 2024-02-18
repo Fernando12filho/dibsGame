@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,6 +13,12 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject highlight3;
     [SerializeField] private GameObject highlight4;
 
+    public Vector2 tilePos1 = new Vector2();
+    public Vector2 tilePos2 = new Vector2();
+    public Vector2 tilePos3 = new Vector2();
+    public Vector2 tilePos4 = new Vector2();
+
+
     public void Init(bool isOffset)
     {
         toRender.color = isOffset ? offsetColor : baseColor;
@@ -19,14 +26,26 @@ public class Tile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("PlayerDropper1"))
+        if (collision.gameObject.CompareTag("PlayerDropper1"))
+        {
             highlight1.SetActive(true);
+            tilePos1 = collision.gameObject.transform.position;
+        }
         else if (collision.gameObject.CompareTag("PlayerDropper2"))
+        {
             highlight2.SetActive(true);
+            tilePos2 = collision.gameObject.transform.position;
+        }
         else if (collision.gameObject.CompareTag("PlayerDropper3"))
+        {
             highlight3.SetActive(true);
+            tilePos3 = collision.gameObject.transform.position;
+        }
         else if (collision.gameObject.CompareTag("PlayerDropper4"))
+        {
             highlight4.SetActive(true);
+            tilePos4 = collision.gameObject.transform.position;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -38,5 +57,22 @@ public class Tile : MonoBehaviour
             highlight3.SetActive(false);
         else if (collision.gameObject.CompareTag("PlayerDropper4"))
             highlight4.SetActive(false);
+    }
+
+    public Vector2 getTilePos1()
+    {
+        return tilePos1;
+    }
+    public Vector2 getTilePos2()
+    {
+        return tilePos2;
+    }
+    public Vector2 getTilePos3()
+    {
+        return tilePos3;
+    }
+    public Vector2 getTilePos4()
+    {
+        return tilePos4;
     }
 }

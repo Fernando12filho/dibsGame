@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.Build;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -24,6 +22,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private bool playerHovering4 = false;
     public GameObject dropperController1;
     public GameObject dropperController2;
+    
 
 
     public void Awake()
@@ -39,14 +38,30 @@ public class Tile : MonoBehaviour
 
     private void Update()
     {
-        if(playerHovering1 && !isOccupied)
+        if(playerHovering1 && !isOccupied && GameManager.gameManager.player1Build)
         {
             if (Input.GetKeyDown(KeyCode.U))
             {
                 Instantiate(dropperController1.GetComponent<DropperController>().selectedObject, new Vector3(tilePos1.x,tilePos1.y), Quaternion.identity);
                 isOccupied = true;
+                gameObject.SetActive(false);
+
+                GameManager.gameManager.player1Build = false;
+
             }
         }
+        else if(playerHovering2 && !isOccupied && GameManager.gameManager.player2Build)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Instantiate(dropperController2.GetComponent<DropperController>().selectedObject, new Vector3(tilePos2.x, tilePos2.y), Quaternion.identity);
+                isOccupied = true;
+                gameObject.SetActive(false);
+
+                GameManager.gameManager.player2Build = false;
+            }
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -60,7 +75,7 @@ public class Tile : MonoBehaviour
         else if (collision.gameObject.CompareTag("PlayerDropper2"))
         {
             highlight2.SetActive(true);
-            tilePos2 = collision.transform.position;
+            tilePos2 = new Vector2(this.transform.position.x, this.transform.position.y);
             playerHovering2 = true; 
         }
         else if (collision.gameObject.CompareTag("PlayerDropper3"))
@@ -116,3 +131,4 @@ public class Tile : MonoBehaviour
         return tilePos4;
     }
 }
+

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button threeP;
     [SerializeField] private Button fourP;
 
+
     public bool player1Build = true;
     public bool player2Build = true;
 
@@ -43,8 +44,9 @@ public class GameManager : MonoBehaviour
 
         play.onClick.AddListener(() =>
         {
-            oneP.gameObject.SetActive(true); twoP.gameObject.SetActive(true);
-            play.gameObject.SetActive(false); quit.gameObject.SetActive(false);
+            SceneManager.LoadScene("Tutorial 1");
+            StartCoroutine(TutorialTimer());
+
 
         });
         quit.onClick.AddListener(() =>
@@ -128,6 +130,14 @@ public class GameManager : MonoBehaviour
                 isDropping = true;
             }
         }
+    }
+
+    IEnumerator TutorialTimer()
+    {
+        yield return new WaitForSeconds(10);
+        SceneManager.LoadScene("Tutorial 2");
+        yield return new WaitForSeconds(10);
+        SceneManager.LoadScene("One Player Level");
     }
 
 }

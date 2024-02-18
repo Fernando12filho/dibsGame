@@ -6,11 +6,16 @@ public class DropperController : MonoBehaviour
 {
     [SerializeField] private int playerNum;
     [SerializeField] private Rigidbody2D moverRb;
-    [SerializeField] private GameObject playerObstacle;
+    public GameObject[] playerObstacles = new GameObject[6];
+    public GameObject selectedObject;
+    private int randSelect;
 
     private void Awake()
     {
         transform.position = new Vector2(1, 1);
+        randSelect = Random.Range(0, 7);
+        selectedObject = playerObstacles[randSelect];
+        gameObject.GetComponent<SpriteRenderer>().sprite = selectedObject.GetComponent<SpriteRenderer>().sprite;
     }
 
     private void Update()

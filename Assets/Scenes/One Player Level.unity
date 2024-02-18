@@ -790,8 +790,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c94bb31bd028b47933a8858c97a39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 21
-  height: 10
+  width: 11
+  height: 5
   tilePrefab: {fileID: 5656041009573216260, guid: 3dc8566ddbb7f37448c1103b9b83cecb, type: 3}
   cam: {fileID: 126774014}
 --- !u!4 &1457116185

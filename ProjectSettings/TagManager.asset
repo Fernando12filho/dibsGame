@@ -9,6 +9,9 @@ TagManager:
   - Slime
   - Trampoline
   - PlayerDropper1
+  - PlayerDropper2
+  - PlayerDropper3
+  - PlayerDropper4
   layers:
   - Default
   - TransparentFX

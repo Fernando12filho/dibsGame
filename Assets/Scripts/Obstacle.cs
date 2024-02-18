@@ -12,6 +12,7 @@ public class Obstacle : MonoBehaviour
     public float speed = 10.0f;
     private bool isStuck = false;
     private InputSystemEditable playerControl;
+    private PlayerController playerController;
 
     private void Awake()
     {
@@ -37,7 +38,6 @@ public class Obstacle : MonoBehaviour
             gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             if (playerControl.Player1.LowFire.triggered || playerControl.Player1.MidFire.triggered ||  playerControl.Player1.HighFire.triggered)
             {
-                Debug.Log("Player is now free to move");
                 isStuck = false;
             }
 

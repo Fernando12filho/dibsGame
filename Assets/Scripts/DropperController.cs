@@ -14,22 +14,43 @@ public class DropperController : MonoBehaviour
 
     private void Update()
     {
-
-        if(Input.GetKey(KeyCode.D))
+        if (this.CompareTag("PlayerDropper1") || this.CompareTag("PlayerDropper3"))
         {
-            transform.position += new Vector3(7 * Time.deltaTime, 0, 0);
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                transform.position += new Vector3(7 * Time.deltaTime, 0, 0);
+            }
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                transform.position += new Vector3(-7 * Time.deltaTime, 0, 0);
+            }
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                transform.position += new Vector3(0, 7 * Time.deltaTime, 0);
+            }
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                transform.position += new Vector3(0, -7 * Time.deltaTime, 0);
+            }
         }
-        if(Input.GetKey(KeyCode.A))
+        else if (this.CompareTag("PlayerDropper2") || this.CompareTag("PlayerDropper4"))
         {
-            transform.position += new Vector3(-7 * Time.deltaTime, 0, 0);
-        }
-        if(Input.GetKey(KeyCode.W))
-        {
-            transform.position += new Vector3(0, 7 * Time.deltaTime, 0);
-        }
-        if(Input.GetKey(KeyCode.S))
-        {
-            transform.position += new Vector3(0, -7 * Time.deltaTime, 0);
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.position += new Vector3(7 * Time.deltaTime, 0, 0);
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.position += new Vector3(-7 * Time.deltaTime, 0, 0);
+            }
+            if (Input.GetKey(KeyCode.W))
+            {
+                transform.position += new Vector3(0, 7 * Time.deltaTime, 0);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                transform.position += new Vector3(0, -7 * Time.deltaTime, 0);
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,16 +8,21 @@ using UnityEngine.InputSystem.Controls;
 
 public class Obstacle : MonoBehaviour
 {
-
+    private bool isRespawning = false;
     Vector3 hitPosition;
     public float speed = 10.0f;
     private bool isStuck = false;
     private InputSystemEditable playerControl;
     private PlayerController playerController;
 
+    [SerializeField] private Vector3 respawnPoint;
+
+    [SerializeField] private Rigidbody2D playerRb;
+
     private void Awake()
     {
         playerControl = new InputSystemEditable();
+        playerRb = new Rigidbody2D();
     }
 
     private void OnEnable()
@@ -28,6 +34,9 @@ public class Obstacle : MonoBehaviour
     {
         playerControl.Disable();
     }
+
+
+
     // Update is called once per frame
     void Update()
     {
@@ -47,6 +56,15 @@ public class Obstacle : MonoBehaviour
                     isStuck = false;
             }
         }
+
+        if (isRespawning) 
+        {
+            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+        }
+        else
+        {
+            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        }
     }
 
 
@@ -57,9 +75,11 @@ public class Obstacle : MonoBehaviour
     {
         if (col.gameObject.tag == "Spike")
         {
-            Debug.Log("Player hit obstacle: " + col.gameObject.name);
+            gameObject.transform.position = respawnPoint;
+            StartCoroutine(Respawning());
+            
             //destroy player
-            Destroy(gameObject);
+            
         }
 
         //if player collides with 2d slime, player gets stuck and can't move for 2 seconds
@@ -69,6 +89,15 @@ public class Obstacle : MonoBehaviour
             hitPosition = gameObject.transform.position;
             isStuck = true;
         }
+    }
+
+    IEnumerator Respawning()
+    {
+        isRespawning = true;  
+        yield return new WaitForSeconds(2);
+        isRespawning = false;
+        
+        
     }
 
     IEnumerator Stuck()

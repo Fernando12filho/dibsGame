@@ -7,6 +7,7 @@ public class BulletBehavior : MonoBehaviour
     [SerializeField] private Rigidbody2D bulletRb;
     [SerializeField] private int bulletSpeed = 2;
     private float timeAlive = 0;
+    [SerializeField] private float despawnTime;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,7 @@ public class BulletBehavior : MonoBehaviour
     {
         transform.position += transform.up * Time.deltaTime * bulletSpeed;
         timeAlive += Time.deltaTime;
-        if(timeAlive > 2) 
+        if(timeAlive > despawnTime) 
         {
             Destroy(gameObject);
         }

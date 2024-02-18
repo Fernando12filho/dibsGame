@@ -6,6 +6,7 @@ public class TurretBehavior : MonoBehaviour
 {
     private float timePassed;
     [SerializeField] private GameObject bullet;
+    [SerializeField] private float fireRate;
 
     private void Awake()
     {
@@ -16,7 +17,7 @@ public class TurretBehavior : MonoBehaviour
     void Update()
     {
         timePassed += Time.deltaTime;
-        if(timePassed > 2f)
+        if(timePassed > fireRate)
         {
             Instantiate(bullet, transform.position, this.transform.rotation);
             timePassed = 0f;

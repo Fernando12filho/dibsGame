@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1565538381433683263, guid: 73381376d2a37744f938cfbc41010cd1, type: 3}
+  fireRate: 3
 --- !u!1001 &8698262942392220829
 PrefabInstance:
   m_ObjectHideFlags: 0

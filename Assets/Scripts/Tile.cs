@@ -39,12 +39,11 @@ public class Tile : MonoBehaviour
 
     private void Update()
     {
-        if(playerHovering1)
+        if(playerHovering1 && !isOccupied)
         {
             if (Input.GetKeyDown(KeyCode.U))
             {
-                Debug.Log("Player 1 Pressed at" + tilePos1);
-                
+                Instantiate(dropperController1.GetComponent<DropperController>().selectedObject, new Vector3(tilePos1.x,tilePos1.y), Quaternion.identity);
                 isOccupied = true;
             }
         }

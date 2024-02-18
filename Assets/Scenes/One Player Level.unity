@@ -286,7 +286,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNum: 0
   moverRb: {fileID: 0}
-  playerObstacle: {fileID: 8174676099836361087, guid: ccdd8b1d2b4025b40b75727cdb3d4c8d, type: 3}
+  playerObstacles:
+  - {fileID: 8174676099836361087, guid: ccdd8b1d2b4025b40b75727cdb3d4c8d, type: 3}
+  - {fileID: 8949662557267212812, guid: c86d5bc5631cf1d43b6ed5d07c1b123f, type: 3}
+  - {fileID: 5492493044625915759, guid: a4cab4c76a2f14047b94fbe55ecdcfcc, type: 3}
+  - {fileID: 3590124134754729253, guid: 87db988349c149f458520c5ca803df7c, type: 3}
+  - {fileID: 4791132228751864101, guid: 5cecbf48b0b163c459955c946e085a2e, type: 3}
+  - {fileID: 0}
 --- !u!1 &126774011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,7 +1099,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNum: 0
   moverRb: {fileID: 0}
-  playerObstacle: {fileID: 0}
+  playerObstacles:
+  - {fileID: 8174676099836361087, guid: ccdd8b1d2b4025b40b75727cdb3d4c8d, type: 3}
+  - {fileID: 8949662557267212812, guid: c86d5bc5631cf1d43b6ed5d07c1b123f, type: 3}
+  - {fileID: 3590124134754729253, guid: 87db988349c149f458520c5ca803df7c, type: 3}
+  - {fileID: 5492493044625915759, guid: a4cab4c76a2f14047b94fbe55ecdcfcc, type: 3}
+  - {fileID: 4791132228751864101, guid: 5cecbf48b0b163c459955c946e085a2e, type: 3}
+  - {fileID: 0}
 --- !u!212 &1391129303
 SpriteRenderer:
   m_ObjectHideFlags: 0

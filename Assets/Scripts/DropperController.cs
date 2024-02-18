@@ -36,7 +36,6 @@ public class DropperController : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.U))
             {
-                Debug.Log(tileManager.getTilePos1());
             }
         }
         else if (this.CompareTag("PlayerDropper2") || this.CompareTag("PlayerDropper4"))
@@ -59,8 +58,7 @@ public class DropperController : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.R))
                 {
-                Debug.Log(tileManager.getTilePos1());
-            }
+                }
         }
     }
 }   

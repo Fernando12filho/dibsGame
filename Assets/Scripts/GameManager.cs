@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
         play.onClick.AddListener(() =>
         {
-            oneP.gameObject.SetActive(true); twoP.gameObject.SetActive(true); threeP.gameObject.SetActive(true); fourP.gameObject.SetActive(true);
+            oneP.gameObject.SetActive(true); twoP.gameObject.SetActive(true);
             play.gameObject.SetActive(false); quit.gameObject.SetActive(false);
 
         });
@@ -79,6 +79,11 @@ public class GameManager : MonoBehaviour
 
         if (isDropping)
         {
+            PlayerController[] players = FindObjectsByType<PlayerController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            foreach (var player in players)
+            {
+                player.gameObject.SetActive(false);
+            }
             if (!player1Build && GameObject.Find("PlayerDropper") != null)
             {
                 GameObject.Find("PlayerDropper").SetActive(false);
@@ -87,23 +92,38 @@ public class GameManager : MonoBehaviour
             {
                 GameObject.Find("PlayerDropper2").SetActive(false);
             }
-            
             if(!player1Build && !player2Build)
             {
                 isDropping = false;
                 player1Build = true;
                 player2Build = true;
+                Tile[] tiles = FindObjectsByType<Tile>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+                foreach (Tile tile in tiles)
+                {
+                    tile.gameObject.SetActive(false);
+                }
             }
         }
 
         if (!isDropping)
         {
+            PlayerController[] players = FindObjectsByType<PlayerController>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach (var player in players)
+            {
+                player.gameObject.SetActive(true);
+            }
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 DropperController[] builders = FindObjectsByType<DropperController>(FindObjectsInactive.Include, FindObjectsSortMode.None);
                 foreach (var builder in builders) 
                 {
                     builder.gameObject.SetActive(true);
+                }
+                Tile[] tiles = FindObjectsByType<Tile>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+                foreach (Tile tile in tiles)
+                {
+                    tile.gameObject.SetActive(true);
                 }
                 isDropping = true;
             }

@@ -12,6 +12,7 @@ TagManager:
   - PlayerDropper2
   - PlayerDropper3
   - PlayerDropper4
+  - Fan
   layers:
   - Default
   - TransparentFX

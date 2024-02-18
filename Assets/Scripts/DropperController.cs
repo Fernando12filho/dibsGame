@@ -6,12 +6,11 @@ public class DropperController : MonoBehaviour
 {
     [SerializeField] private int playerNum;
     [SerializeField] private Rigidbody2D moverRb;
-    private Tile tileManager;
+    [SerializeField] private GameObject playerObstacle;
 
     private void Awake()
     {
         transform.position = new Vector2(1, 1);
-        tileManager = new Tile();
     }
 
     private void Update()
@@ -34,9 +33,7 @@ public class DropperController : MonoBehaviour
             {
                 transform.position += new Vector3(0, -7 * Time.deltaTime, 0);
             }
-            if (Input.GetKeyDown(KeyCode.U))
-            {
-            }
+
         }
         else if (this.CompareTag("PlayerDropper2") || this.CompareTag("PlayerDropper4"))
         {
@@ -55,9 +52,6 @@ public class DropperController : MonoBehaviour
                 if (Input.GetKey(KeyCode.S))
                 {
                     transform.position += new Vector3(0, -7 * Time.deltaTime, 0);
-                }
-                if (Input.GetKeyDown(KeyCode.R))
-                {
                 }
         }
     }

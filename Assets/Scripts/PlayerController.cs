@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float hitStrengthLow = 10f;
     public float hitStrengthMid = 15f;
     public float hitStrengthHigh = 20f;
+    public AudioSource audioPlayer;
 
 
     public Rigidbody2D playerRb;
@@ -158,6 +159,16 @@ public class PlayerController : MonoBehaviour
             doubleJump = true;
         }
     }
+
+
+    public void OnCollisionEnter(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Trampoline")
+        {
+            audioPlayer.Play();
+        }
+    }
+
 
 
 }

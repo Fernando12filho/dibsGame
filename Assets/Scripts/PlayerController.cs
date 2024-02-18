@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
+using UnityEditor.Experimental.GraphView;
+using UnityEngine.Experimental.Rendering;
 
 public class PlayerController : MonoBehaviour
 {   
@@ -14,7 +16,10 @@ public class PlayerController : MonoBehaviour
     public float hitStrengthMid = 15f;
     public float hitStrengthHigh = 20f;
 
+
     public Rigidbody2D playerRb;
+    [SerializeField] private GameObject playerDropper;
+    [SerializeField] private GameManager gameManager;
 
     public CircleCollider2D playerCollider;
     public CircleCollider2D groundCollider;
@@ -50,87 +55,94 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerNum == 1)
+        //if (!gameManager.isDropping)
         {
-            Vector2 move = playerControls.Player1.Move.ReadValue<Vector2>();
-
-            if (isGrounded)
+            if (playerNum == 1)
             {
-                if (playerControls.Player1.LowFire.triggered)
+                Vector2 move = playerControls.Player1.Move.ReadValue<Vector2>();
+
+                if (isGrounded)
                 {
-                    playerRb.AddForce(move * hitStrengthLow, ForceMode2D.Impulse);
+                    if (playerControls.Player1.LowFire.triggered)
+                    {
+                        playerRb.AddForce(move * hitStrengthLow, ForceMode2D.Impulse);
+                    }
+                    if (playerControls.Player1.MidFire.triggered)
+                    {
+                        playerRb.AddForce(move * hitStrengthMid, ForceMode2D.Impulse);
+                    }
+                    if (playerControls.Player1.HighFire.triggered)
+                    {
+                        playerRb.AddForce(move * hitStrengthHigh, ForceMode2D.Impulse);
+                    }
                 }
-                if (playerControls.Player1.MidFire.triggered)
+                else if (doubleJump)
                 {
-                    playerRb.AddForce(move * hitStrengthMid, ForceMode2D.Impulse);
-                }
-                if (playerControls.Player1.HighFire.triggered)
-                {
-                    playerRb.AddForce(move * hitStrengthHigh, ForceMode2D.Impulse);
+                    if (playerControls.Player1.LowFire.triggered)
+                    {
+                        playerRb.AddForce(move * hitStrengthLow, ForceMode2D.Impulse);
+                        doubleJump = false;
+                    }
+                    if (playerControls.Player1.MidFire.triggered)
+                    {
+                        playerRb.AddForce(move * hitStrengthMid, ForceMode2D.Impulse);
+                        doubleJump = false;
+                    }
+                    if (playerControls.Player1.HighFire.triggered)
+                    {
+                        playerRb.AddForce(move * hitStrengthHigh, ForceMode2D.Impulse);
+                        doubleJump = false;
+                    }
                 }
             }
-            else if (doubleJump)
+            else if (playerNum == 2)
             {
-                if (playerControls.Player1.LowFire.triggered)
+                Vector2 move = playerControls.Player2.Move.ReadValue<Vector2>();
+
+                if (isGrounded)
                 {
-                    playerRb.AddForce(move * hitStrengthLow, ForceMode2D.Impulse);
-                    doubleJump = false;
+                    if (playerControls.Player2.LowFire.triggered)
+                    {
+                        playerRb.AddForce(move * hitStrengthLow, ForceMode2D.Impulse);
+                    }
+                    if (playerControls.Player2.MidFire.triggered)
+                    {
+                        playerRb.AddForce(move * hitStrengthMid, ForceMode2D.Impulse);
+                    }
+                    if (playerControls.Player2.HighFire.triggered)
+                    {
+                        playerRb.AddForce(move * hitStrengthHigh, ForceMode2D.Impulse);
+                    }
                 }
-                if (playerControls.Player1.MidFire.triggered)
+                else if (doubleJump)
                 {
-                    playerRb.AddForce(move * hitStrengthMid, ForceMode2D.Impulse);
-                    doubleJump = false;
-                }
-                if (playerControls.Player1.HighFire.triggered)
-                {
-                    playerRb.AddForce(move * hitStrengthHigh, ForceMode2D.Impulse);
-                    doubleJump = false;
+                    if (playerControls.Player2.LowFire.triggered)
+                    {
+                        playerRb.AddForce(move * hitStrengthLow, ForceMode2D.Impulse);
+                        doubleJump = false;
+                    }
+                    if (playerControls.Player2.MidFire.triggered)
+                    {
+                        playerRb.AddForce(move * hitStrengthMid, ForceMode2D.Impulse);
+                        doubleJump = false;
+                    }
+                    if (playerControls.Player2.HighFire.triggered)
+                    {
+                        playerRb.AddForce(move * hitStrengthHigh, ForceMode2D.Impulse);
+                        doubleJump = false;
+                    }
                 }
             }
         }
-        else if(playerNum == 2)
-        {
-            Vector2 move = playerControls.Player2.Move.ReadValue<Vector2>();
-
-            if (isGrounded)
-            {
-                if (playerControls.Player2.LowFire.triggered)
-                {
-                    playerRb.AddForce(move * hitStrengthLow, ForceMode2D.Impulse);
-                }
-                if (playerControls.Player2.MidFire.triggered)
-                {
-                    playerRb.AddForce(move * hitStrengthMid, ForceMode2D.Impulse);
-                }
-                if (playerControls.Player2.HighFire.triggered)
-                {
-                    playerRb.AddForce(move * hitStrengthHigh, ForceMode2D.Impulse);
-                }
-            }
-            else if (doubleJump)
-            {
-                if (playerControls.Player2.LowFire.triggered)
-                {
-                    playerRb.AddForce(move * hitStrengthLow, ForceMode2D.Impulse);
-                    doubleJump = false;
-                }
-                if (playerControls.Player2.MidFire.triggered)
-                {
-                    playerRb.AddForce(move * hitStrengthMid, ForceMode2D.Impulse);
-                    doubleJump = false;
-                }
-                if (playerControls.Player2.HighFire.triggered)
-                {
-                    playerRb.AddForce(move * hitStrengthHigh, ForceMode2D.Impulse);
-                    doubleJump = false;
-                }
-            }
-        }
+        //else if (gameManager.isDropping)
+       // { 
+       //     playerDropper.SetActive(true);
+        //}
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.CompareTag("Ground"))
+        if(col.CompareTag("Ground") || col.CompareTag("Trampoline")  || col.CompareTag("Slime"))
         {
             isGrounded = true;
             doubleJump = true;
@@ -142,6 +154,8 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
     }
     
+    
+
 }
 
 

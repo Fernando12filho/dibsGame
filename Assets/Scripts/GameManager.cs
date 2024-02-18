@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button threeP;
     [SerializeField] private Button fourP;
 
+    public bool isDropping = false;
+
     private InputSystemEditable playerControls;
 
     public static GameManager Instance;
@@ -44,7 +46,8 @@ public class GameManager : MonoBehaviour
         });
         oneP.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene("Feature Testing Scene");
+            SceneManager.LoadScene("One Player Level");
+            isDropping = true;
         });
         twoP.onClick.AddListener(() =>
         {

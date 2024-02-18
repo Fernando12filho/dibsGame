@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager gameManager;
     [SerializeField] private Button play;
     [SerializeField] private Button quit;
     [SerializeField] private Button oneP;
@@ -15,7 +16,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button threeP;
     [SerializeField] private Button fourP;
 
-    public bool isDropping = false;
+    public bool player1Build = true;
+    public bool player2Build = true;
+
+    public bool isDropping = true;
 
     private InputSystemEditable playerControls;
 
@@ -29,9 +33,12 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+
+
         playerControls = new InputSystemEditable();
 
         Instance = this;
+        gameManager = this;
         DontDestroyOnLoad(gameObject);
 
         play.onClick.AddListener(() =>
@@ -68,6 +75,38 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
         {
             Application.Quit();
+        }
+
+        if (isDropping)
+        {
+            if (!player1Build && GameObject.Find("PlayerDropper") != null)
+            {
+                GameObject.Find("PlayerDropper").SetActive(false);
+            }
+            if(!player2Build && GameObject.Find("PlayerDropper2") != null)
+            {
+                GameObject.Find("PlayerDropper2").SetActive(false);
+            }
+            
+            if(!player1Build && !player2Build)
+            {
+                isDropping = false;
+                player1Build = true;
+                player2Build = true;
+            }
+        }
+
+        if (!isDropping)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                DropperController[] builders = FindObjectsByType<DropperController>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+                foreach (var builder in builders) 
+                {
+                    builder.gameObject.SetActive(true);
+                }
+                isDropping = true;
+            }
         }
     }
 

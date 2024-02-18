@@ -286,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNum: 0
   moverRb: {fileID: 0}
+  playerObstacle: {fileID: 8174676099836361087, guid: ccdd8b1d2b4025b40b75727cdb3d4c8d, type: 3}
 --- !u!1 &126774011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,6 +1093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNum: 0
   moverRb: {fileID: 0}
+  playerObstacle: {fileID: 0}
 --- !u!212 &1391129303
 SpriteRenderer:
   m_ObjectHideFlags: 0

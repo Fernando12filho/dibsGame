@@ -1709,6 +1709,8 @@ MonoBehaviour:
   twoP: {fileID: 1219610613}
   threeP: {fileID: 699146033}
   fourP: {fileID: 1271433394}
+  player1Build: 1
+  player2Build: 1
   isDropping: 0
 --- !u!4 &1777037809
 Transform:

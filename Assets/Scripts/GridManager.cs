@@ -11,6 +11,7 @@ public class GridManager : MonoBehaviour
 
     private Dictionary<Vector2, Tile> tiles;
 
+
     private void Start()
     {
         GenerateGrid();
@@ -19,10 +20,11 @@ public class GridManager : MonoBehaviour
     void GenerateGrid()
     {
         tiles = new Dictionary<Vector2, Tile>();
-        for(int x = -10; x < width; x++)
+        for(int x = 0; x < width; x++)
         {
-            for(int y = -5; y < height; y++) 
+            for(int y = 0; y < height; y++) 
             {
+
                 var spawnedTile = Instantiate(tilePrefab, new Vector3(x,y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
 
@@ -31,9 +33,10 @@ public class GridManager : MonoBehaviour
 
                 tiles[new Vector2(x,y)] = spawnedTile;
             }
+            
         }
 
-        cam.transform.position = new Vector3((float)width/5 - 2.2f, (float)height/5 - 1.5f, -10);
+        cam.transform.position = new Vector3((float)width/2 - 0.5f, (float)height/2 - 0.5f, -10);
     }
 
     public Tile GetTileAtPosition(Vector2 pos)
@@ -45,4 +48,5 @@ public class GridManager : MonoBehaviour
 
         return null;
     }
+
 }

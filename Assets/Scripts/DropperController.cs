@@ -6,7 +6,6 @@ public class DropperController : MonoBehaviour
 {
     [SerializeField] private int playerNum;
     [SerializeField] private Rigidbody2D moverRb;
-    private GridManager gridManager;
     private Tile tileManager;
 
     private void Awake()
@@ -35,7 +34,7 @@ public class DropperController : MonoBehaviour
             {
                 transform.position += new Vector3(0, -7 * Time.deltaTime, 0);
             }
-            if (Input.GetKey(KeyCode.U))
+            if (Input.GetKeyDown(KeyCode.U))
             {
                 Debug.Log(tileManager.getTilePos1());
             }
@@ -58,10 +57,10 @@ public class DropperController : MonoBehaviour
                 {
                     transform.position += new Vector3(0, -7 * Time.deltaTime, 0);
                 }
-                if (Input.GetKey(KeyCode.R))
+                if (Input.GetKeyDown(KeyCode.R))
                 {
-
-                }
+                Debug.Log(tileManager.getTilePos1());
+            }
         }
     }
 }   
